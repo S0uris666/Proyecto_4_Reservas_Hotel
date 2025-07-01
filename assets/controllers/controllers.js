@@ -1,8 +1,16 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs/promises';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path'
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const filePath = path.join(__dirname, '../data/reservas.json');
+let idCounter = 1;
 
+// Leer y guardar reservas en un archivo JSON
+// Si el archivo no existe, se crea uno nuevo
 const leerReservas = async () => {
   try {
     const data = await fs.readFile(filePath, 'utf-8');
@@ -12,6 +20,7 @@ const leerReservas = async () => {
   }
 };
 
+// Guardar reservas en el archivo
 const guardarReservas = async (reservas) => {
   try {
     await fs.writeFile(filePath, JSON.stringify(reservas, null, 2));
@@ -20,7 +29,7 @@ const guardarReservas = async (reservas) => {
   }
 };
 
-let idCounter = 1;
+// Crear reserva
 
 const crearReserva = async (req, res) => {
   try {
@@ -37,6 +46,7 @@ const crearReserva = async (req, res) => {
   }
 };
 
+// Obtener todas las reservas con filtros
 const obtenerReservas = async (req, res) => {
   try {
     let resultado = await leerReservas();
@@ -49,7 +59,10 @@ const obtenerReservas = async (req, res) => {
       num_huespedes,
     } = req.query;
 
+    // Filtrar reservas según los parámetros de consulta
+
     if (hotel) resultado = resultado.filter((r) => r.hotel === hotel);
+
     if (tipo_habitacion)
       resultado = resultado.filter(
         (r) => r.tipo_habitacion === tipo_habitacion
@@ -70,6 +83,7 @@ const obtenerReservas = async (req, res) => {
   }
 };
 
+// Obtener reserva por ID
 const obtenerReservaPorId = async (req, res) => {
   try {
     const reservas = await leerReservas();
@@ -82,12 +96,14 @@ const obtenerReservaPorId = async (req, res) => {
   }
 };
 
+// Actualizar reserva
 const actualizarReserva = async (req, res) => {
   try {
     const reservas = await leerReservas();
-    const index = reservas.findIndex((r) => r.id == req.params.id);
-    if (index === -1)
+    const index = reservas.findIndex((r) => r.id == req.params.id); //Solo 2 == para comparar valores, uno es string y otro es number
+    if (index === -1)//viene con findindex, si no encuentra el elemento devuelve -1
       return res.status(404).json({ error: 'Reserva no encontrada' });
+      // Preservar ID original
     reservas[index] = { ...reservas[index], ...req.body };
     await guardarReservas(reservas);
     res.json(reservas[index]);
@@ -95,7 +111,7 @@ const actualizarReserva = async (req, res) => {
     return res.status(500).json({ error: 'Error al actualizar la reserva' });
   }
 };
-
+// Eliminar reserva
 const eliminarReserva = async (req, res) => {
   try {
     const reservas = await leerReservas();
@@ -109,8 +125,8 @@ const eliminarReserva = async (req, res) => {
     return res.status(500).json({ error: 'Error al eliminar la reserva' });
   }
 };
-
-module.exports = {
+//Se exportan las funciones para ser utilizadas en las rutas
+export {
   crearReserva,
   obtenerReservas,
   obtenerReservaPorId,

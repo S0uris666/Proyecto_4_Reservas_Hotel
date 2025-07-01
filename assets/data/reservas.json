@@ -1,1 +1,26 @@
-[]
+[
+  {
+    "id": 1,
+    "hotel": "Hotel Nubes",
+    "fecha": "2024-12-24",
+    "tipo_habitacion": "economica",
+    "num_huespedes": 4,
+    "estado": "pendiente"
+  },
+  {
+    "id": 2,
+    "hotel": "Hotel Cabaña",
+    "fecha": "2025-11-02",
+    "tipo_habitacion": "Buena",
+    "num_huespedes": 4,
+    "estado": "pendiente"
+  },
+  {
+    "id": 3,
+    "hotel": "Hotel Cabaña",
+    "fecha": "2025-10-01",
+    "tipo_habitacion": "Elegante",
+    "num_huespedes": 2,
+    "estado": "Confirmada"
+  }
+]
