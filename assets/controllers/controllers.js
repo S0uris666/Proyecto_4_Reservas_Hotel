@@ -1,13 +1,14 @@
 import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { dirname } from 'path'
+import { dirname } from 'path';
+import 'datejs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const filePath = path.join(__dirname, '../data/reservas.json');
-let idCounter = 1;
+/* let idCounter = 1; */
 
 // Leer y guardar reservas en un archivo JSON
 // Si el archivo no existe, se crea uno nuevo
@@ -30,14 +31,20 @@ const guardarReservas = async (reservas) => {
 };
 
 // Crear reserva
-
 const crearReserva = async (req, res) => {
   try {
     const reservas = await leerReservas();
+    const ultimoId = reservas.length > 0 ? reservas[reservas.length - 1].id : 0;
     const nuevaReserva = {
-      id: idCounter++,
-      ...req.body,
+      id: parseInt(ultimoId) + 1, // Generar ID único
+      hotel: req.body.hotel,
+      fecha_inicio: req.body.fecha_inicio,
+      fecha_fin: req.body.fecha_fin,
+      tipo_habitacion: req.body.tipo_habitacion,
+      estado: req.body.estado || 'pendiente', // Estado por defecto
+      num_huespedes: req.body.num_huespedes,
     };
+
     reservas.push(nuevaReserva);
     await guardarReservas(reservas);
     res.status(201).json(nuevaReserva);
@@ -70,10 +77,16 @@ const obtenerReservas = async (req, res) => {
     if (estado) resultado = resultado.filter((r) => r.estado === estado);
     if (num_huespedes)
       resultado = resultado.filter((r) => r.num_huespedes == num_huespedes);
-    if (fecha_inicio && fecha_fin) {
+
+    if (fecha_inicio && fecha_fin) {//fecha_inicio y fecha_fin son obligatorios
+      const inicioConsulta = Date.parse(fecha_inicio);
+      const finConsulta = Date.parse(fecha_fin);
+
       resultado = resultado.filter((r) => {
-        const fecha = new Date(r.fecha);
-        return fecha >= new Date(fecha_inicio) && fecha <= new Date(fecha_fin);
+        const inicioReserva = Date.parse(r.fecha_inicio);
+        const finReserva = Date.parse(r.fecha_fin);
+
+        return inicioReserva <= finConsulta && finReserva >= inicioConsulta;
       });
     }
 
@@ -101,9 +114,10 @@ const actualizarReserva = async (req, res) => {
   try {
     const reservas = await leerReservas();
     const index = reservas.findIndex((r) => r.id == req.params.id); //Solo 2 == para comparar valores, uno es string y otro es number
-    if (index === -1)//viene con findindex, si no encuentra el elemento devuelve -1
+    if (index === -1)
+      //viene con findindex, si no encuentra el elemento devuelve -1
       return res.status(404).json({ error: 'Reserva no encontrada' });
-      // Preservar ID original
+    // Preservar ID original
     reservas[index] = { ...reservas[index], ...req.body };
     await guardarReservas(reservas);
     res.json(reservas[index]);
@@ -121,6 +135,7 @@ const eliminarReserva = async (req, res) => {
     reservas.splice(index, 1);
     await guardarReservas(reservas);
     res.status(204).send();
+    return res.json({ message: 'Reserva eliminada correctamente' });
   } catch (error) {
     return res.status(500).json({ error: 'Error al eliminar la reserva' });
   }
