@@ -2,7 +2,8 @@
   {
     "id": 1,
     "hotel": "Hotel Nubes",
-    "fecha": "2024-12-24",
+    "fecha_inicio": "2024-12-24",
+    "fecha_fin": "2025-09-24",
     "tipo_habitacion": "economica",
     "num_huespedes": 4,
     "estado": "pendiente"
@@ -10,7 +11,8 @@
   {
     "id": 2,
     "hotel": "Hotel Cabaña",
-    "fecha": "2025-11-02",
+    "fecha_inicio": "2025-11-02",
+    "fecha_fin": "2025-11-05",
     "tipo_habitacion": "Buena",
     "num_huespedes": 4,
     "estado": "pendiente"
@@ -18,9 +20,47 @@
   {
     "id": 3,
     "hotel": "Hotel Cabaña",
-    "fecha": "2025-10-01",
+    "fecha_inicio": "2025-10-01",
+    "fecha_fin": "2025-10-05",
     "tipo_habitacion": "Elegante",
     "num_huespedes": 2,
     "estado": "Confirmada"
+  },
+  {
+    "id": 4,
+    "hotel": "Hotel de la luna",
+    "fecha_inicio": "2025-12-01",
+    "fecha_fin": "2025-12-05",
+    "tipo_habitacion": "economica",
+    "estado": "pendiente",
+    "num_huespedes": 4
+  },
+  {
+    "id": 5,
+    "hotel": "Hotel de la luna",
+    "fecha_inicio": "2025-12-01",
+    "fecha_fin": "2025-12-05",
+    "tipo_habitacion": "economica",
+    "estado": "pendiente",
+    "num_huespedes": 4
+  },
+
+  {
+    "id": 6,
+    "hotel": "Hotel de pajaros",
+    "fecha_inicio": "2025-12-26",
+    "fecha_fin": "2025-12-30",
+    "tipo_habitacion": "economica",
+    "estado": "pendiente",
+    "num_huespedes": 4
+  },
+  {
+    "id": 7,
+    "hotel": "Hotel de cangrejos",
+    "fecha_inicio": "2025-12-26",
+    "fecha_fin": "2025-12-30",
+    "tipo_habitacion": "economica",
+    "estado": "pendiente",
+    "num_huespedes": 4
   }
 ]
