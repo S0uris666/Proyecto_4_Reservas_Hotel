@@ -76,17 +76,31 @@ Eliminar una reserva por ID.
 
 ## 👀 Pruebas en Thunder client
 
-A contuniación se presentan pruebas de las funcionalidades
-
+A continuación se presentan pruebas de las funcionalidades
+```text
+GET /api/reservas/
+```
 ![get_all](./assets/config/img_pruebas_readme/get_all.jpg)
+```text
+GET /api/reservas/:id
+```
 ![get_id](./assets/config/img_pruebas_readme/get_id.jpg)
+```text
+GET filtros query
+```
 ![get_por_estado](./assets/config/img_pruebas_readme/get_por_estado.jpg)
 ![get_por_fechas](./assets/config/img_pruebas_readme/get_por_fechas.jpg)
 ![get_por_hotel](./assets/config/img_pruebas_readme/get_por_hotel.jpg)
 
-
+```text
+DELETE /api/reservas/:id
+```
 ![delete_id](./assets/config/img_pruebas_readme/delete_id.jpg)
-
+```text
+POST /api/reservas/
+```
 ![post_reserva](./assets/config/img_pruebas_readme/post_reserva.jpg)
-
+```text
+PUT /api/reservas/:id
+```
 ![put_id](./assets/config/img_pruebas_readme/put_id.jpg)
