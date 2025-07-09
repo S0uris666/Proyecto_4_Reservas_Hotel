@@ -134,8 +134,8 @@ const eliminarReserva = async (req, res) => {
       return res.status(404).json({ error: 'Reserva no encontrada' });
     reservas.splice(index, 1);
     await guardarReservas(reservas);
-    res.status(204).send();
-    return res.json({ message: 'Reserva eliminada correctamente' });
+    
+    return res.status(200).json({ message: 'Reserva eliminada correctamente' });
   } catch (error) {
     return res.status(500).json({ error: 'Error al eliminar la reserva' });
   }
