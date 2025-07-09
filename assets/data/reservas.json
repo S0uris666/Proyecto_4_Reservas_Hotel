@@ -44,19 +44,9 @@
     "estado": "pendiente",
     "num_huespedes": 4
   },
-
   {
     "id": 6,
     "hotel": "Hotel de pajaros",
-    "fecha_inicio": "2025-12-26",
-    "fecha_fin": "2025-12-30",
-    "tipo_habitacion": "economica",
-    "estado": "pendiente",
-    "num_huespedes": 4
-  },
-  {
-    "id": 7,
-    "hotel": "Hotel de cangrejos",
     "fecha_inicio": "2025-12-26",
     "fecha_fin": "2025-12-30",
     "tipo_habitacion": "economica",
