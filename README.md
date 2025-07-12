@@ -5,7 +5,8 @@ Este es un proyecto backend desarrollado con Node.js y Express para gestionar re
 ```text
 
 .
-├── assets
+├── src
+    ├── assets/ 
 │   ├── config/          # Configuración general (Swagger, etc.)
 │   ├── controllers/     # Lógica de negocio de las reservas
 │   ├── data/            # Archivos de datos locales (reservas.json)
@@ -80,27 +81,27 @@ A continuación se presentan pruebas de las funcionalidades
 ```text
 GET /api/reservas/
 ```
-![get_all](./assets/config/img_pruebas_readme/get_all.jpg)
+![get_all](.src/assets/config/img_pruebas_readme/get_all.jpg)
 ```text
 GET /api/reservas/:id
 ```
-![get_id](./assets/config/img_pruebas_readme/get_id.jpg)
+![get_id](./src/assets/config/img_pruebas_readme/get_id.jpg)
 ```text
 GET filtros query
 ```
-![get_por_estado](./assets/config/img_pruebas_readme/get_por_estado.jpg)
-![get_por_fechas](./assets/config/img_pruebas_readme/get_por_fechas.jpg)
-![get_por_hotel](./assets/config/img_pruebas_readme/get_por_hotel.jpg)
+![get_por_estado](./src/assets/config/img_pruebas_readme/get_por_estado.jpg)
+![get_por_fechas](./src/assets/config/img_pruebas_readme/get_por_fechas.jpg)
+![get_por_hotel](./src/assets/config/img_pruebas_readme/get_por_hotel.jpg)
 
 ```text
 DELETE /api/reservas/:id
 ```
-![delete_id](./assets/config/img_pruebas_readme/delete_id.jpg)
+![delete_id](./src/assets/config/img_pruebas_readme/delete_id.jpg)
 ```text
 POST /api/reservas/
 ```
-![post_reserva](./assets/config/img_pruebas_readme/post_reserva.jpg)
+![post_reserva](./src/assets/config/img_pruebas_readme/post_reserva.jpg)
 ```text
 PUT /api/reservas/:id
 ```
-![put_id](./assets/config/img_pruebas_readme/put_id.jpg)
+![put_id](./src/assets/config/img_pruebas_readme/put_id.jpg)

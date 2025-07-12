@@ -3,8 +3,8 @@ dotenv.config();
 
 import express from 'express';
 import swaggerUi from 'swagger-ui-express';
-import specs from './assets/config/swagger/swagger.js';
-import reservasRoutes from './assets/routes/routes.js';
+import specs from './src/config/swagger/swagger.js';
+import reservasRoutes from './src/routes/routes.js';
 
 const app = express();
 
